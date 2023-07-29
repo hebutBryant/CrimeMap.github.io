@@ -1,0 +1,97 @@
+#nav1 a{
+    color: #AFB1B3;
+    text-decoration: none;
+    transition: .4s;
+    margin-left: 20px;
+
+}
+
+#nav1 a:hover{
+    color: white;
+}
+
+#nav1{
+    width: 400px;
+}
+
+.dropdown{
+    margin-right: 50px;
+
+
+}
+
+#languages {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: cursive, sans-serif;
+    outline: 0;
+    background: #A9B5C2;
+    color: #fff;
+    border: 1px solid crimson;
+    padding: 4px;
+    border-radius: 9px;
+}
+
+#lan-btn {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border: 2px solid #3C3F41;
+    border-radius:5px;
+}
+#lan-btn:hover {
+    background-color: #A9B5C2;
+    color: white;
+}
+
+#map{
+
+    width: 1850px;
+    height: 1000px;
+}
+
+.ol-popup {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+    min-width: 280px;
+}
+.ol-popup:after, .ol-popup:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.ol-popup:after {
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
+}
+.ol-popup:before {
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
+}
+.ol-popup-closer {
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+}
+.ol-popup-closer:after {
+    content: "✖";
+}
+
+

@@ -1,0 +1,2 @@
+area-unit.geojson filter=lfs diff=lfs merge=lfs -text
+Bay-of-Plenty1.geojson filter=lfs diff=lfs merge=lfs -text

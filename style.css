@@ -1,0 +1,242 @@
+/*158383 Group8 work*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    color: white;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar a {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .4s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: white;
+}
+
+.Home {
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url('Picture.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.Home-content {
+    max-width: 600px;
+}
+
+.Home-content h1 {
+    position: relative;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.Home-content h1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: showRight 1s ease forwards;
+    animation-delay: .3s;
+}
+
+.Home-content h3 {
+    position: relative;
+    font-size: 34px;
+    font-weight: 700;
+    color: white;
+}
+
+.Home-content h3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: showRight 1s ease forwards;
+    animation-delay: .4s;
+}
+
+.Home-content p {
+    position: relative;
+    font-size: 20px;
+    margin: 20px 0 40px;
+}
+
+.Home-content p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: showRight 1s ease forwards;
+    animation-delay: .5s;
+}
+
+.Home-content .btn-box {
+    position: relative;
+    width: 350px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Home-content .btn-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: showRight 1s ease forwards;
+    animation-delay: .6s;
+    z-index: 2;
+}
+
+.btn-box a {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 100%;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 8px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    z-index: 1;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.btn-box a:hover {
+    color: white;
+}
+.btn-box a:nth-child(2) {
+    background: transparent;
+    color: white;
+}
+
+.btn-box a:nth-child(2):hover {
+    color: white;
+}
+.btn-box a:nth-child(2)::before {
+    color: white;
+}
+
+.btn-box a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: white;
+    z-index: -1;
+    transition: .4s;
+}
+
+.btn-box a:hover::before {
+    width: 100%;
+}
+
+.Footer {
+    width: 100%;
+    padding: 70px 15%;
+    background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75));
+    display: flex;
+}
+
+.Footer div {
+    text-align: center;
+}
+
+.Col-2 {
+    flex-grow: 2;
+}
+
+.Footer div h3 {
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.Col-1 a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 10px;
+}
+
+form input {
+    width: 400px;
+    height: 45px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    outline: none;
+    border: none;
+}
+
+form button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 15px;
+    cursor: pointer;
+}
+/* KEYFRAMES ANIMATION */
+@keyframes showRight {
+    100%{
+        width: 0;
+    }
+}

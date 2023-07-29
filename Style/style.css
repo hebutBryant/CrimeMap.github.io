@@ -1,0 +1,316 @@
+/*158383 Group8 work*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    color: white;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar a {
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .4s;
+}
+
+
+.navbar a.active {
+    color: white;
+}
+
+.Home {
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url("images/bg.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.Home-content {
+    max-width: 600px;
+}
+
+.Home-content h1 {
+    position: relative;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.Home-content h1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: showRight 1s ease forwards;
+    animation-delay: .3s;
+}
+
+.Home-content h3 {
+    position: relative;
+    font-size: 34px;
+    font-weight: 700;
+    color: white;
+}
+
+.Home-content h3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: showRight 1s ease forwards;
+    animation-delay: .4s;
+}
+
+.Home-content p {
+    position: relative;
+    font-size: 20px;
+    margin: 20px 0 40px;
+}
+
+.Home-content p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: showRight 1s ease forwards;
+    animation-delay: .5s;
+}
+
+.Home-content .btn-box {
+    position: relative;
+    width: 350px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Home-content .btn-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: showRight 1s ease forwards;
+    animation-delay: .6s;
+    z-index: 2;
+}
+
+.btn-box a {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 100%;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 8px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    z-index: 1;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.btn-box a:hover {
+    color: white;
+}
+.btn-box a:nth-child(2) {
+    background: transparent;
+    color: white;
+}
+
+.btn-box a:nth-child(2):hover {
+    color: white;
+}
+.btn-box a:nth-child(2)::before {
+    color: white;
+}
+
+.btn-box a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: white;
+    z-index: -1;
+    transition: .4s;
+}
+
+.btn-box a:hover::before {
+    width: 100%;
+}
+
+.Footer {
+    height: 300px;
+    width: 100%;
+    padding: 100px 15%;
+    background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75));
+    display: flex;
+}
+
+.Footer div {
+    text-align: center;
+}
+
+
+
+.Footer div h3 {
+    font-weight: 300;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.Footer .Col-1 #l1  li{
+    display: block;
+    text-decoration: none;
+    color: #AFB1B3;
+    margin-bottom: 10px;
+}
+
+.Footer .Col-1 #l1 li:hover{
+    color: white;
+
+}
+.Footer div #l1  {
+    list-style-type: none;
+}
+
+.Footer .Col-1{
+    margin-left: -170px;
+    margin-top: -50px;
+}
+
+.Footer .Col-2{
+    margin-top: -50px;
+    margin-left: 150px;
+    text-align: left;
+
+}
+.Footer .Col-2 #l2 {
+    list-style-type: none;
+    padding-bottom: 20px;
+}
+.Footer .Col-2 #ad {
+    list-style-type: none;
+
+
+}
+.Footer .Col-2 #email {
+    list-style-type: none;
+    padding-top: 20px;
+}
+
+/*.Footer .Col-2 #l2{*/
+/*    margin-left: 100px;*/
+/*    padding-bottom: 20px;*/
+
+/*}*/
+
+/*.Footer .Col-2 #ad{*/
+/*    margin-left: 150px;*/
+/*    padding-top: 20px;*/
+
+/*}*/
+
+
+/*.Footer .Col-2 #email{*/
+/*    margin-left: 75px;*/
+/*    padding-top: 20px;*/
+
+/*}*/
+
+.Footer .Col-3{
+    margin-left: 200px;
+
+}
+
+
+
+form input {
+    width: 400px;
+    height: 125px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    outline: none;
+    border: none;
+}
+
+button{
+    width: 100px;
+    height: 30px;
+    color:white;
+    background-color:#365880;
+    border-radius: 3px;
+    border-width: 0;/*消去按钮丑的边框*/
+    outline: none;/*取消轮廓*/
+    font-size: 17px;
+    text-align: center;
+    cursor: pointer;/*设置鼠标箭头手势*/
+}
+button:active {
+    box-shadow: none;
+    transform: translateY(3px);
+}
+button:hover{/*鼠标移动时的颜色变化*/
+    background-color:#1590E0;
+
+}
+
+/* KEYFRAMES ANIMATION */
+@keyframes showRight {
+    100%{
+        width: 0;
+    }
+}
+
+.navbar a:hover {
+    color: mediumvioletred;
+}

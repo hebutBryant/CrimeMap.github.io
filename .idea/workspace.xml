@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="af5b38e4-ab1a-484f-a48b-da10aea1a41e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/src.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Picture.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Service.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_region_layer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_territorial.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_territorial_layer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_unit.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_unit_layer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_vio_info.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/style1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bay-of-Plenty1.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Map.html" beforeDir="false" afterPath="$PROJECT_DIR$/Map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NZdistrict.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Search_area.php" beforeDir="false" afterPath="$PROJECT_DIR$/Search_area.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Style/Map_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Style/Map_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/area-unit.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/joinAuckland1.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/joinWellington1.geojson" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test3.html" beforeDir="false" afterPath="$PROJECT_DIR$/test3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test4.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectId" id="2PAnSDJPFTo5RlS033INs9JGk4G" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/Assignment2/158383 Assignment 2/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="PHP Script.get_vio_info.php">
+    <configuration name="Map.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/src/Map.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="get_territorial_layer.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/get_territorial_layer.php">
+      <method v="2" />
+    </configuration>
+    <configuration name="get_vio_info.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/get_vio_info.php">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.get_vio_info.php" />
+        <item itemvalue="PHP Script.get_territorial_layer.php" />
+        <item itemvalue="JavaScript Debug.Map.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="af5b38e4-ab1a-484f-a48b-da10aea1a41e" name="Changes" comment="" />
+      <created>1682908751284</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682908751284</updated>
+      <workItem from="1682908752277" duration="224000" />
+      <workItem from="1682909920000" duration="3649000" />
+      <workItem from="1682937861685" duration="19000" />
+      <workItem from="1684294274076" duration="1269000" />
+      <workItem from="1684295557053" duration="379000" />
+      <workItem from="1684295944688" duration="2097000" />
+      <workItem from="1684298057597" duration="2553000" />
+      <workItem from="1684308477632" duration="160000" />
+      <workItem from="1684308644782" duration="375000" />
+      <workItem from="1684309034654" duration="737000" />
+      <workItem from="1684309783340" duration="232000" />
+      <workItem from="1684310028106" duration="773000" />
+      <workItem from="1684310811930" duration="212000" />
+      <workItem from="1684311030796" duration="1342000" />
+      <workItem from="1684312386015" duration="277000" />
+      <workItem from="1684312671048" duration="1042000" />
+      <workItem from="1684313727845" duration="389000" />
+      <workItem from="1684314124160" duration="3677000" />
+      <workItem from="1684318567597" duration="234000" />
+      <workItem from="1684318814004" duration="5018000" />
+      <workItem from="1684327487510" duration="4044000" />
+      <workItem from="1684368520693" duration="165000" />
+      <workItem from="1684368697953" duration="336000" />
+      <workItem from="1684369041506" duration="715000" />
+      <workItem from="1684369769886" duration="1961000" />
+      <workItem from="1684666778817" duration="903000" />
+      <workItem from="1684667695716" duration="416000" />
+      <workItem from="1684668122897" duration="635000" />
+      <workItem from="1684722365601" duration="356000" />
+      <workItem from="1684724547804" duration="1040000" />
+      <workItem from="1684734674729" duration="721000" />
+      <workItem from="1684754944678" duration="303000" />
+      <workItem from="1684755266982" duration="215000" />
+      <workItem from="1684755554682" duration="10000" />
+      <workItem from="1684755998504" duration="1940000" />
+      <workItem from="1684766901194" duration="1904000" />
+      <workItem from="1684841699317" duration="3583000" />
+      <workItem from="1684967603498" duration="2488000" />
+      <workItem from="1685011312006" duration="156000" />
+      <workItem from="1685011478483" duration="3064000" />
+      <workItem from="1685019317042" duration="360000" />
+      <workItem from="1685076115976" duration="3000" />
+      <workItem from="1685103165984" duration="609000" />
+      <workItem from="1685162970021" duration="1425000" />
+      <workItem from="1685262807899" duration="644000" />
+      <workItem from="1685321503187" duration="690000" />
+      <workItem from="1690536944092" duration="1234000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

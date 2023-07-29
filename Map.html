@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/elm-pep@1.0.6/dist/elm-pep.js"></script>
+    <link href="Style/Map_Style.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
+    <script src="jquery-3.6.4.min.js"></script>
+    <script src="ol.js"></script>
+    <script src="bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js"></script>
+    <link rel="icon" type="Logo" href="Style/images/logo.png">
+<!--    <script src="City-list.js"></script>-->
+    <link rel="stylesheet" href="ol.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 当表单提交时执行查询
+            $('#drop0').submit(function(event) {
+                event.preventDefault(); // 阻止表单的默认提交行为
+
+                // 获取表单数据
+                var searchTerm = $('#region').val();
+
+                // 发起 AJAX 请求
+                $.ajax({
+                    type: 'POST',
+                    url: 'get_territorial.php', // PHP 文件的路径
+                    data: { region: searchTerm }, // 发送给服务器的数据
+                    dataType: 'json', // 指定预期的响应数据类型为 JSON
+                    success: function(response) {
+                        // 清空 <select> 中的选项
+                        $('#city').empty();
+
+                        // 解析 JSON 数据
+                        var options = response.options;
+
+                        // 生成新的 <option>
+                        $.each(options, function(index, value) {
+                            $('#city').append($('<option>').text(value).val(value));
+                        });
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            // 监听表单提交事件
+            $("#drop1").submit(function(event) {
+                event.preventDefault(); // 阻止默认的表单提交行为
+
+                // 获取选择的区域
+                var selectedArea = $("#city").val();
+
+                // 发起查询请求
+                $.ajax({
+                    url: 'get_unit.php', // 替换为您的PHP脚本路径
+                    type: 'POST',
+                    data: { city: selectedArea }, // 替换为您的表单数据
+                    dataType: 'json',
+                    success: function(response) {
+                        // 解析JSON结果
+                        var results = response.options;
+
+                        // 清空之前的选项
+                        $("#area").empty();
+
+                        // 添加新的选项
+                        for (var i = 0; i < results.length; i++) {
+                            var option = $("<option>").text(results[i]);
+                            $("#area").append(option);
+                        }
+
+
+
+                    },
+                    error: function(xhr, status, error) {
+                        // 处理请求错误的逻辑
+                        console.error(error); // 在控制台输出错误信息，用于调试
+                    }
+                });
+            });
+        });
+
+
+
+
+    </script>
+
+    <title>Map</title>
+</head>
+<style>
+    .ol-zoomslider {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        z-index: 1000;
+        margin-top: 50px;
+
+    }
+
+</style>
+
+<body>
+<!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark" style="background-color: #3F7AF7;width: 1850px">
+    <a class="navbar-brand" href="#" style="display:inline-block;float: right">
+        <img src="Style/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Crime Map
+    </a>
+    <div id="nav1" style="display:inline-block;float: right">
+    <a href="Index.html" class="active">Home</a>
+    <a href="Map.html">Map</a>
+    <a href="Service.html">Services</a>
+    </div>
+    <form id="drop0" method="post">
+        <select id="region" name="region" style="width: 200px">
+            <option value="1">Choose city</option>
+            <option value="Wellington Region">Wellington Region</option>
+            <option value="Auckland Region">Auckland Region</option>
+            <option value="Tasman Region">Tasman Region</option>
+            <option value="Otago Region">Otago Region</option>
+            <option value="Taranaki Region">Taranaki Region</option>
+            <option value="Nelson Region">Nelson Region</option>
+            <option value="Southland Region">Southland Region</option>
+            <option value="Marlborough Region">Marlborough Region</option>
+            <option value="Canterbury Region">Canterbury Region</option>
+            <option value="West Coast Region">West Coast Region</option>
+            <option value="Bay of Plenty Region">Bay of Plenty Region</option>
+            <option value="Waikato Region">Waikato Region</option>
+            <option value="Northland Region">Northland Region</option>
+            <option value="Gisborne Region">Gisborne Region</option>
+            <option value="Hawke's Bay Region">Hawke's Bay Region</option>
+            <option value="Manawatu-Wanganui Region">Manawatu-Wanganui Region</option>
+        </select>
+        <button type="submit" class="btn btn-primary" >confirm region</button>
+    </form>
+    <form id="drop1"  method="post">
+
+        <select id="city" style="width: 200px" name="city">
+            <option value="1">Choose city</option>
+        </select>
+        <button type="submit" class="btn btn-primary" >confirm city</button>
+    </form>
+
+    <form id="drop2" action="Search_area.php" method="post">
+        <select id="area" style="width: 200px" name="area" >
+            <option value="2">Choose unit</option>
+
+        </select>
+        <button type="submit" class="btn btn-primary" >confirm area</button>
+
+    </form>
+
+    <form id="Ctype" action="get_vio_info.php" method="post">
+        <select id="Type" name="Type">
+            <option value="Both Type">Both Type</option>
+            <option value="Violent">Violent</option>
+            <option value="Robbery">Robbery</option>
+
+        </select>
+        <input type="hidden" value="" name="select_area" id="select_area">
+        <button id="lan-btn" type="submit">Search</button>
+    </form>
+
+
+</nav>
+<div id="map">
+    <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+
+    </div>
+<!--    <div id="Cpopup" class="ol-popup">-->
+<!--        <a href="#" id="Cpopup-closer" class="ol-popup-closer"></a>-->
+<!--        <div id="Cpopup-content"></div>-->
+<!--    </div>-->
+</div>
+<div id="result"></div>
+<div id="result2"></div>
+</body>
+
+<script>
+    document.getElementById('drop2').addEventListener('submit', function(event) {
+
+        var areaSelect = document.getElementById('area');
+        var selectAreaInput = document.getElementById('select_area');
+
+        // 将area选择框的值赋给select_area输入框
+        selectAreaInput.value = areaSelect.value;
+
+    });
+</script>
+
+
+<script>
+    // 创建两个图层的图层源
+    var layer1 = new ol.layer.Tile({
+        source: new ol.source.XYZ({
+            url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+        }),
+        visible: true,
+        opacity: 1,
+        maxZoom: 18,
+        minZoom: 0,
+        zIndex: 0
+    });
+
+    // const transformedCoords = ol.proj.transform(geojsonLayer, 'EPSG:4326', 'EPSG:3857');
+
+
+
+    // 创建一个包含两个图层的地图
+    var map = new ol.Map({
+        layers: [layer1],
+        target: 'map',
+        //设置视图
+        view: new ol.View({
+            //中心经纬度
+                center: ol.proj.fromLonLat([174.763332,-36.848461]),
+            //zoom：放大级别
+            zoom:2,
+            projection: 'EPSG:4326' // 指定使用 EPSG:4326 坐标系
+        })
+    });
+
+    //视图跳转控件
+    var newZealandExtent = [166, -47, 178, -34];
+    const ZoomToExtent = new ol.control.ZoomToExtent({
+        extent: newZealandExtent
+    });
+
+    map.addControl(ZoomToExtent)
+
+    var zoomSliderControl = new ol.control.ZoomSlider();
+    map.addControl(zoomSliderControl)
+    const fullScreen = new ol.control.FullScreen()
+    map.addControl(fullScreen)
+
+    // const point = new ol.Feature({
+    //     geometry: new ol.geom.Point(ol.proj.fromLonLat([174.763332,-36.848461]))
+    // });
+    //
+    // let style = new ol.style.Style({
+    //     image: new ol.style.Circle({
+    //         radius: 5,
+    //         fill: new ol.style.Fill({
+    //             color: "#E8511C"
+    //         }),
+    //         stroke:new ol.style.Stroke({
+    //             width:2,
+    //             color: "#1A191A"
+    //         })
+    //     })
+    // });
+    //
+    // point.setStyle(style);
+    //
+    // let source = new ol.source.Vector({
+    //     features: [point] // 修改了 feature 为 features
+    // });
+    //
+    // let layer = new ol.layer.Vector({
+    //     source
+    // });
+    //
+    // map.addLayer(layer);
+    // name  [longitude  latitude]
+
+
+
+
+    // 存储最后添加的城市图层
+    var lastCityLayer;
+
+    // 用于移除上一次搜索产生的图层
+    function remove_last() {
+        if (lastCityLayer) {
+            map.removeLayer(lastCityLayer);
+            lastCityLayer = null;
+        }
+    }
+
+    // 执行选定city后的添加图层的操作
+    function Search2() {
+        var cityTag = document.getElementById("city");
+        var city_name = cityTag.value;
+        if (city_name === 'Auckland') {
+            remove_last();
+            lastCityLayer = Aucklandlist[0];
+            map.addLayer(lastCityLayer);
+
+        } else if (city_name === 'Wellington') {
+            remove_last();
+            lastCityLayer = Wellingtonlist[0];
+            map.addLayer(lastCityLayer);
+        } else if (city_name === 'Bay of Plenty') {
+            remove_last();
+            lastCityLayer = Bay_of_Plentylist[0];
+            map.addLayer(lastCityLayer);
+        }
+    }
+    // 创建一个空的数组来存储每个点的经纬度
+    var coordinates = [];
+    //最后一次添加的Area图层
+    var lastAreaLayer;
+    function remove_last2() {
+        if (lastAreaLayer) {
+            map.removeLayer(lastAreaLayer);
+            lastAreaLayer = null;
+        }
+    }
+
+    $(document).ready(function() {
+        // 监听表单提交事件
+        $("#drop0").submit(function(event) {
+            event.preventDefault(); // 阻止默认的表单提交行为
+
+            // 获取选择的区域
+            var selectedArea = $("#region").val();
+
+            // 发起查询请求
+            $.ajax({
+                url: 'get_region_layer.php', // 替换为您的PHP脚本路径
+                type: 'POST',
+                data: { region: selectedArea }, // 替换为您的表单数据
+                dataType: 'json',
+                success: function(response) {
+                    // 解析JSON结果
+                    var results = response;
+
+                    // 处理结果，将其插入到指定的HTML元素中
+
+                    // var resultDiv = document.getElementById("result");
+                    // resultDiv.innerHTML = ""; // 清空之前的结果
+                    // for (var i = 0; i < results.length; i++) {
+                    //     resultDiv.innerHTML += results[i] + "<br>";
+                    // }
+                    var polygonData = response.toString();
+                    polygonData = polygonData.replace("MULTIPOLYGON(((", "").replace(")))", "");
+
+// 分割多边形数据中的经纬度坐标对
+                    var points = polygonData.split(",");
+
+
+
+// 遍历所有的经纬度坐标对
+                    for (var i = 0; i < points.length; i++) {
+                        // 分割经纬度坐标对，获取经度和纬度
+                        var lonlat = points[i].trim().split(" ");
+                        // *****将经度和纬度转换为浮点数并添加到坐标数组中
+                        coordinates.push([parseFloat(lonlat[0]), parseFloat(lonlat[1])]);
+                    }
+                    //
+                    // var resultDiv2 = document.getElementById("result2");
+                    // resultDiv2.innerHTML="";
+                    // for(var i=0;i<coordinates.length;i++){
+                    //     resultDiv2.innerHTML +=coordinates[i]+ "<br>";
+                    // }
+
+
+// 创建多边形几何体
+                    var polygonGeometry = new ol.geom.Polygon([coordinates]);
+
+// 创建多边形要素
+                    var polygonFeature = new ol.Feature(polygonGeometry);
+
+// 设置多边形要素的样式
+                    polygonFeature.setStyle(new ol.style.Style({
+                        fill: new ol.style.Fill({
+                            color: '#FAD701' //
+                        }),
+                        stroke: new ol.style.Stroke({
+                            color: '#AFB1B3', // 设置边界线颜色为绿色
+                            width: 8 // 设置边界线宽度为2个像素
+                        })
+                    }));
+
+// 创建矢量图层并添加多边形要素
+                    var vectorLayer = new ol.layer.Vector({
+                        source: new ol.source.Vector({
+                            features: [polygonFeature]
+                        }),
+                        projection: 'EPSG:4326'
+                    });
+                    vectorLayer.setOpacity(0.3);
+
+
+// 将矢量图层添加到地图中
+                    if(lastAreaLayer){
+                        remove_last2();
+                    }
+                    lastAreaLayer = vectorLayer;
+                    map.addLayer(vectorLayer);
+                    var longitude;
+                    var latitude;
+                    longitude = coordinates[0][0];
+                    latitude = coordinates[0][1];
+                    // 获取地图的 view 对象
+                    var view = map.getView();
+                    view.setCenter([longitude, latitude]);
+                    view.setZoom(8);
+                    //清空数组，为下一次查找
+                    coordinates.length = 0;
+
+
+
+
+// 打印结果
+                    console.log(coordinates);
+                    var layerCount = map.getLayers().getLength();
+                    console.log(layerCount);
+                    // var layers = map.getLayers();
+                    // layers.forEach(function(layer) {
+                    //     console.log(layer.get('name'));
+                    // });
+
+
+                },
+                error: function(xhr, status, error) {
+                    // 处理请求错误的逻辑
+                    console.error(error); // 在控制台输出错误信息，用于调试
+                }
+            });
+
+        });
+    });
+
+
+//     // 创建一个空的数组来存储每个点的经纬度
+//     var coordinates2 = [];
+//     //最后一次添加的Area图层
+//     var lastAreaLayer2;
+//
+//     $(document).ready(function() {
+//         // 监听表单提交事件
+//         $("#drop1").submit(function(event) {
+//             event.preventDefault(); // 阻止默认的表单提交行为
+//
+//             // 获取选择的区域
+//             var selectedArea = $("#city").val();
+//
+//             // 发起查询请求
+//             $.ajax({
+//                 url: 'get_territorial_layer.php', // 替换为您的PHP脚本路径
+//                 type: 'POST',
+//                 data: { city: selectedArea }, // 替换为您的表单数据
+//                 dataType: 'json',
+//                 success: function(response) {
+//                     // 解析JSON结果
+//                     var results = response;
+//
+//                     // 处理结果，将其插入到指定的HTML元素中
+//                     //
+//                     // var resultDiv = document.getElementById("result");
+//                     // resultDiv.innerHTML = ""; // 清空之前的结果
+//                     // for (var i = 0; i < results.length; i++) {
+//                     //     resultDiv.innerHTML += results[i] + "<br>";
+//                     // }
+//                     var polygonData = response.toString();
+//                     polygonData = polygonData.replace("MULTIPOLYGON(((", "").replace(")))", "");
+//
+// // 分割多边形数据中的经纬度坐标对
+//                     var points = polygonData.split(",");
+//
+//
+//
+// // 遍历所有的经纬度坐标对
+//                     for (var i = 0; i < points.length; i++) {
+//                         // 分割经纬度坐标对，获取经度和纬度
+//                         var lonlat = points[i].trim().split(" ");
+//                         // *****将经度和纬度转换为浮点数并添加到坐标数组中
+//                         coordinates2.push([parseFloat(lonlat[0]), parseFloat(lonlat[1])]);
+//                     }
+//
+//                     // var resultDiv2 = document.getElementById("result2");
+//                     // resultDiv2.innerHTML="";
+//                     // for(var i=0;i<coordinates2.length;i++){
+//                     //     resultDiv2.innerHTML +=coordinates2[i]+ "<br>";
+//                     // }
+//
+//
+// // 遍历所有的经纬度坐标对
+//                     var layerArray = []; // 存储分块图层数组
+//
+// // 遍历所有的经纬度坐标对
+//                     for (var i = 0; i < points.length; i += 1000) {
+//                         var chunk = points.slice(i, i + 1000); // 获取当前块的数据
+//
+//                         // 创建块的空数组来存储每个点的经纬度
+//                         var coordinatesChunk = [];
+//
+//                         // 将当前块的经纬度坐标对添加到块的数组中
+//                         for (var j = 0; j < chunk.length; j++) {
+//                             var lonlat = chunk[j].trim().split(" ");
+//                             coordinatesChunk.push([parseFloat(lonlat[0]), parseFloat(lonlat[1])]);
+//                         }
+//
+//                         // 创建多边形几何体
+//                         var polygonGeometry = new ol.geom.Polygon([coordinatesChunk]);
+//
+//                         // 创建多边形要素
+//                         var polygonFeature = new ol.Feature(polygonGeometry);
+//
+//                         // 设置多边形要素的样式
+//                         polygonFeature.setStyle(new ol.style.Style({
+//                             // fill: new ol.style.Fill({
+//                             //     color: '#E8511C'
+//                             // }),
+//                             stroke: new ol.style.Stroke({
+//                                 color: '#AFB1B3',
+//                                 width: 1
+//                             })
+//                         }));
+//
+//                         // 创建矢量图层并添加多边形要素
+//                         var vectorLayer = new ol.layer.Vector({
+//                             source: new ol.source.Vector({
+//                                 features: [polygonFeature]
+//                             }),
+//                             projection: 'EPSG:4326'
+//                         });
+//                         vectorLayer.setOpacity(0.5);
+//
+//                         // 将矢量图层添加到地图中
+//                         layerArray.push(vectorLayer);
+//                     }
+//
+// // 将所有的图层一次性添加到地图中
+//                     layerArray.length = layerArray.length-2;
+//                     layerArray.forEach(function(layer) {
+//                         map.addLayer(layer);
+//                     });
+//
+//                     console.log(layerArray.length);
+// // 打印结果
+//                     console.log(coordinates2);
+//                     var layerCount = map.getLayers().getLength();
+//                     console.log(layerCount);
+//                     // var layers = map.getLayers();
+//                     // layers.forEach(function(layer) {
+//                     //     console.log(layer.get('name'));
+//                     // });
+//
+//
+//                 },
+//                 error: function(xhr, status, error) {
+//                     // 处理请求错误的逻辑
+//                     console.error(error); // 在控制台输出错误信息，用于调试
+//                 }
+//             });
+//
+//         });
+//     });
+
+
+    var coordinates3 = [];
+    //最后一次添加的Area图层
+    var lastAreaLayer3;
+
+    function remove_last3() {
+        if (lastAreaLayer3) {
+            map.removeLayer(lastAreaLayer3);
+            lastAreaLayer3 = null;
+        }
+    }
+
+
+    $(document).ready(function() {
+        // 监听表单提交事件
+        $("#drop2").submit(function(event) {
+            event.preventDefault(); // 阻止默认的表单提交行为
+
+            // 获取选择的区域
+            var selectedArea = $("#area").val();
+
+            // 发起查询请求
+            $.ajax({
+                url: 'Search_area.php', // 替换为您的PHP脚本路径
+                type: 'POST',
+                data: { area: selectedArea }, // 替换为您的表单数据
+                dataType: 'json',
+                success: function(response) {
+                    // 解析JSON结果
+                    var results = response;
+
+                    // 处理结果，将其插入到指定的HTML元素中
+
+                    // var resultDiv = document.getElementById("result");
+                    // resultDiv.innerHTML = ""; // 清空之前的结果
+                    // for (var i = 0; i < results.length; i++) {
+                    //     resultDiv.innerHTML += results[i] + "<br>";
+                    // }
+                    var polygonData = response.toString();
+                    polygonData = polygonData.replace("MULTIPOLYGON(((", "").replace(")))", "");
+
+// 分割多边形数据中的经纬度坐标对
+                    var points = polygonData.split(",");
+
+
+
+// 遍历所有的经纬度坐标对
+                    for (var i = 0; i < points.length; i++) {
+                        // 分割经纬度坐标对，获取经度和纬度
+                        var lonlat = points[i].trim().split(" ");
+                        // *****将经度和纬度转换为浮点数并添加到坐标数组中
+                        coordinates3.push([parseFloat(lonlat[0]), parseFloat(lonlat[1])]);
+                    }
+                    //
+                    // var resultDiv2 = document.getElementById("result2");
+                    // resultDiv2.innerHTML="";
+                    // for(var i=0;i<coordinates.length;i++){
+                    //     resultDiv2.innerHTML +=coordinates[i]+ "<br>";
+                    // }
+
+
+// 创建多边形几何体
+                    var polygonGeometry = new ol.geom.Polygon([coordinates3]);
+
+// 创建多边形要素
+                    var polygonFeature = new ol.Feature(polygonGeometry);
+
+// 设置多边形要素的样式
+                    polygonFeature.setStyle(new ol.style.Style({
+                        fill: new ol.style.Fill({
+                            color: '#027BD5' //
+                        }),
+                        stroke: new ol.style.Stroke({
+                            color: '#AFB1B3', // 设置边界线颜色为绿色
+                            width: 3 // 设置边界线宽度为2个像素
+                        })
+                    }));
+
+// 创建矢量图层并添加多边形要素
+                    var vectorLayer = new ol.layer.Vector({
+                        source: new ol.source.Vector({
+                            features: [polygonFeature]
+                        }),
+                        projection: 'EPSG:4326'
+                    });
+                    vectorLayer.setOpacity(0.8);
+
+
+// 将矢量图层添加到地图中
+                    if(lastAreaLayer3){
+                        remove_last3();
+                    }
+                    lastAreaLayer3 = vectorLayer;
+                    map.addLayer(vectorLayer);
+                    var view = map.getView();
+                    view.setZoom(11);
+
+
+// 打印结果
+                    var longitude;
+                    var latitude;
+                    longitude = coordinates3[0][0];
+                    latitude = coordinates3[0][1];
+                    // 获取地图的 view 对象
+                    var view = map.getView();
+                    view.setCenter([longitude, latitude]);
+                    view.setZoom(13);
+                    //清空数组，为下一次查找
+                    coordinates3.length = 0;
+
+                    // var layers = map.getLayers();
+                    // layers.forEach(function(layer) {
+                    //     console.log(layer.get('name'));
+                    // });
+
+
+                },
+                error: function(xhr, status, error) {
+                    // 处理请求错误的逻辑
+                    console.error(error); // 在控制台输出错误信息，用于调试
+                }
+            });
+
+        });
+    });
+
+
+
+
+
+
+    // function Search(){
+    //     var cityTag = document.getElementById("city");
+    //     // var index = cityTag.selectedIndex-1;
+    //     var city_name = cityTag.value
+    //     var i;
+    //     var longitude;
+    //     var latitude;
+    //     longitude = coordinates[0][0];
+    //     latitude = coordinates[0][1];
+    //     // 获取地图的 view 对象
+    //     var view = map.getView();
+    //     view.setCenter([longitude, latitude]);
+    //     view.setZoom(13);
+    //     //清空数组，为下一次查找
+    //     coordinates.length = 0;
+    //
+    // }
+    //加入图层的顺序，world,NewZealand,city,area// 创建 Overlay
+    var popupOverlay = new ol.Overlay({
+        element: document.getElementById('popup'), // 弹出窗口的 HTML 元素
+        positioning: 'bottom-center', // 弹出窗口相对于锚点的位置
+        stopEvent: false // 允许事件传播到地图上的其他要素，默认为 false
+    });
+    map.addOverlay(popupOverlay);
+
+    // 添加点击事件处理程序
+    const container = document.getElementById('popup');
+    const content = document.getElementById('popup-content');
+    const closer = document.getElementById('popup-closer');
+
+    //避免两个click地图事件同时触发
+    var popupOpen = false; // 弹出窗口状态标志变量
+    var delay = 500; // 延迟时间（单位：毫秒）
+
+    closer.addEventListener('click', function (event) {
+        popupOverlay.setPosition(undefined);
+        closer.blur();
+        popupOpen = true; // 设置弹出窗口状态为关闭
+        setTimeout(function () {
+            popupOpen = false; // 一段时间后恢复弹出窗口状态
+        }, delay);
+    });
+
+    map.on('singleclick', function (evt) {
+        if (!popupOpen) { // 检查弹出窗口状态
+            const coordinate = evt.coordinate;
+            const hdms = ol.coordinate.toStringHDMS(coordinate);
+
+            content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+            popupOverlay.setPosition(coordinate);
+
+            popupOpen = true; // 设置弹出窗口状态为打开
+            setTimeout(function () {
+                popupOpen = false; // 一段时间后恢复弹出窗口状态
+            }, delay);
+        }
+    });
+
+
+</script>
+<!--<script>-->
+<!--    $.ajax({-->
+<!--        url: "map.php",-->
+<!--        type: "POST",-->
+<!--        dataType: "json",-->
+<!--        data: {-->
+<!--            FName: keyword-->
+<!--        },-->
+<!--        success: function(response) {-->
+
+<!--            console.log("hello")-->
+<!--            var polygonData = response.toString();-->
+<!--            polygonData = polygonData.replace("MULTIPOLYGON(((", "").replace(")))", "");-->
+
+<!--// 分割多边形数据中的经纬度坐标对-->
+<!--            var points = polygonData.split(",");-->
+<!--</script>-->
+</html>

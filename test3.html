@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>Page Dimensions</title>
+  <script>
+    function getPageDimensions() {
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+      console.log('Page width: ' + width);
+      console.log('Page height: ' + height);
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/openlayers/6.5.0/ol.css" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/openlayers/6.5.0/ol.js"></script>
+
+</head>
+<body onload="getPageDimensions()">
+<h1>Page Dimensions</h1>
+<a href="City-list.js" download>点击这里下载报告</a>
+
+
+</body>
+<script>
+  import Map from 'ol/Map'; // 引入 Map 类
+  import View from 'ol/View'; // 引入 View 类
+  import TileLayer from 'ol/layer/Tile'; // 引入 TileLayer 类
+  import XYZ from 'ol/source/XYZ'; // 引入 XYZ 类
+
+  new Map({
+    target: 'map', // 将地图添加到具有 ID "map" 的 div 元素中
+    layers: [
+      new TileLayer({
+        source: new XYZ({
+          url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png' // 添加 OpenStreetMap 图层
+        })
+      })
+    ],
+    view: new View({
+      center: [0, 0], // 设置地图中心为经度 0，纬度 0
+      zoom: 2 // 设置缩放级别为 2
+    })
+  });
+
+
+
+</script>
+</html>
